@@ -1,6 +1,7 @@
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.net.Socket;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.util.Scanner;
 
 /**
  * This class represents a TCP client that connects to a server and sends
@@ -39,7 +40,6 @@ public class TCP_CLIENT {
         receive.close();
         client_Socket.close();
         System.exit(0);
-
       }
 
       System.out.print("\nEnter A Number: ");
@@ -57,7 +57,6 @@ public class TCP_CLIENT {
         receive.close();
         client_Socket.close();
         System.exit(1);
-
       }
 
       System.out.print(message);

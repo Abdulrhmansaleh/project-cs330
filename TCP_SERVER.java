@@ -1,5 +1,7 @@
-import java.io.*;
-import java.net.*;
+import java.net.Socket;
+import java.net.ServerSocket;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 
 public class TCP_SERVER {
 
@@ -91,25 +93,3 @@ public class TCP_SERVER {
   }
 
 }
-
-/*
- * char option = recive.readChar();
- * boolean is_int = true;
- * try{
- * 
- * decimal = Integer.parseInt(recive.readUTF());
- * System.out.println(decimal+"ok");
- * }catch(Exception e )
- * {
- * is_int = false;
- * if (!is_int && (option !='H' || option != 'B'))
- * {
- * //send error message
- * 
- * 
- * response.close();
- * System.exit(0);
- * }
- * 
- * }
- */
