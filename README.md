@@ -18,23 +18,24 @@ This project is a Java application that establishes a TCP client-server connecti
 ## Installation
 1. Ensure you have Java installed on your machine. You can download it from the official Oracle website.
 2. Clone the repository to your local machine using Git:
-
+```bash
 git clone https://github.com/Abdulrhmansaleh/project-cs330.git
-
+```
 3. Navigate to the project directory:
-
+```bash
 cd project-cs330
-
+```
 
 ## Usage
 1. Compile the Java files:
-
+```bash
 javac TCP_SERVER.java TCP_CLIENT.java
-
+```
 2. Run the server program in one terminal:
-
+```bash
 java TCP_SERVER.java
-
+```
 3. Run the client program in another terminal and follow the prompts to input a decimal number and the desired number system:
-
+```bash
 java TCP_CLIENT.java
+```
