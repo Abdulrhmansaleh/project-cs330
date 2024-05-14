@@ -3,7 +3,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.random.*;
 
 /**
  * This class represents a TCP client that connects to a server and sends
@@ -35,19 +34,17 @@ public class TCP_CLIENT {
           "choose option\nB: to convert to binary\nH: to convert to hexadecimal\nQ: to quit the client program\n");
 
       String option = inputs.nextLine();// this variable for storing the answer of user option
-      
-      //check user option
-       if(!option.equalsIgnoreCase("H")&&!option.equalsIgnoreCase("B")&&!option.equalsIgnoreCase("Q")){
+
+      // check user option
+      if (!option.equalsIgnoreCase("H") && !option.equalsIgnoreCase("B") && !option.equalsIgnoreCase("Q")) {
         System.out.println("300\tBad request");
         System.exit(1);
       }
-
-      
-       if(genrate_error() < 100){
-        option =(char) new Random().nextInt()+""; //genrate random option
+      // possibility for an error to occur
+      if (genrate_error() < 17) {
+        option = (char) new Random().nextInt() + ""; // genrate random option
       }
-      
-  
+
       send.writeUTF(option); // send the option to TCP_SERVER
       if (option.equalsIgnoreCase("Q")) {
         send.close();
@@ -59,13 +56,17 @@ public class TCP_CLIENT {
       System.out.print("\nEnter A Number: ");
 
       String number = inputs.nextLine(); // to get the decimal input
+
+      // if the input is not number an exception will occur
       Integer.parseInt(number);
       inputs.close();
-      if(genrate_error() < 100){
-        number =(char) new Random().nextInt()+""; //genrate random number
+
+      // possibility for an error to occur
+      if (genrate_error() < 17) {
+        number = (char) new Random().nextInt() + ""; // genrate random number
       }
       send.writeUTF(number); // send the number to TCP_SERVER
-      
+
       // display error messages received from TCP_SERVER
       message = receive.readUTF();
       if (!message.equals("200ok\t")) {
@@ -82,19 +83,19 @@ public class TCP_CLIENT {
       receive.close();
       client_Socket.close();
 
-    }catch(NumberFormatException e){
-         System.out.println("400\tThe number is missing");
-         System.exit(1);
+    } catch (NumberFormatException e) { // if the input was not number catch the error
+      System.out.println("400\tThe number is missing");
+      System.exit(1);
 
-    }catch (Exception e) {
+    } catch (Exception e) {
       System.err.println("Server is down, please try again later.");
       System.exit(0);
     }
   }
 
-  private static int genrate_error()
-  {
-     return new Random().nextInt(200);
+  // genrate_error(); generate number between 0-99
+  private static int genrate_error() {
+    return new Random().nextInt(100);
   }
-  
+
 }
