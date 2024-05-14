@@ -35,8 +35,9 @@ public class TCP_CLIENT {
           "choose option\nB: to convert to binary\nH: to convert to hexadecimal\nQ: to quit the client program\n");
 
       String option = inputs.nextLine();// this variable for storing the answer of user option
-      if(genrate_error() < 50){
+      if(genrate_error() < 100){
         option =(char) new Random().nextInt()+""; //genrate random option
+        
       }
   
       send.writeUTF(option); // send the option to TCP_SERVER
@@ -51,9 +52,12 @@ public class TCP_CLIENT {
 
       String number = inputs.nextLine(); // to get the decimal input
       inputs.close();
-
+      if(genrate_error() < 100){
+        number =(char) new Random().nextInt()+""; //genrate random option
+        
+      }
       send.writeUTF(number); // send the number to TCP_SERVER
-
+      
       // display error messages received from TCP_SERVER
       message = receive.readUTF();
       if (!message.equals("200ok\t")) {
@@ -78,7 +82,7 @@ public class TCP_CLIENT {
 
   private static int genrate_error()
   {
-     return new Random().nextInt(100);
+     return new Random().nextInt(200);
   }
   
 }
