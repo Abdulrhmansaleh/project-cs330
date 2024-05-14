@@ -1,7 +1,9 @@
 import java.net.Socket;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.random.*;
 
 /**
  * This class represents a TCP client that connects to a server and sends
@@ -33,7 +35,10 @@ public class TCP_CLIENT {
           "choose option\nB: to convert to binary\nH: to convert to hexadecimal\nQ: to quit the client program\n");
 
       String option = inputs.nextLine();// this variable for storing the answer of user option
-
+      if(genrate_error() < 50){
+        option =(char) new Random().nextInt()+""; //genrate random option
+      }
+  
       send.writeUTF(option); // send the option to TCP_SERVER
       if (option.equalsIgnoreCase("Q")) {
         send.close();
@@ -52,7 +57,7 @@ public class TCP_CLIENT {
       // display error messages received from TCP_SERVER
       message = receive.readUTF();
       if (!message.equals("200ok\t")) {
-        System.out.print(message);
+        System.out.println(message);
         send.close();
         receive.close();
         client_Socket.close();
@@ -70,4 +75,10 @@ public class TCP_CLIENT {
       System.exit(0);
     }
   }
+
+  private static int genrate_error()
+  {
+     return new Random().nextInt(100);
+  }
+  
 }
